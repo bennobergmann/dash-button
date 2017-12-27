@@ -19,9 +19,10 @@ def button_pressed_dash():
   timespan = thistime - lastpress
   if timespan.total_seconds() > timespan_threshhold:
     current_time = datetime.datetime.strftime(thistime, '%Y-%m-%d %H:%M:%S')
-    print 'Dash button ' + dash_mac_address + ' pressed at ' + current_time
+    print('Dash button ' + dash_mac_address + ' pressed at ' + current_time)
+  
     # Action
-    print 'Action is: wakeonlan ' + wol_mac_address
+    print('Action is: wakeonlan ' + wol_mac_address)
     call(["sudo", "wakeonlan", wol_mac_address])
   lastpress = thistime
 
@@ -36,8 +37,8 @@ def udp_filter(pkt):
 
 mac_to_action = {dash_mac_address : button_pressed_dash}
 mac_id_list = list(mac_to_action.keys())
- 
-print "Waiting for a dash button to be pressed..."
+
+print("Waiting for a dash button to be pressed...")
 sniff(prn=udp_filter, store=0, filter="udp", lfilter=lambda d: d.src in mac_id_list)
 
 if __name__ == "__main__":

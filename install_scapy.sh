@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -ex
+
 echo "We need root permissions to install libdnet"
 sudo echo "OK"
 # curl -O "https://bootstrap.pypa.io/get-pip.py"
